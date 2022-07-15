@@ -8,7 +8,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.ResourceAccessException;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("api/v1/")
@@ -49,7 +51,15 @@ public class EmployeeController {
         return  ResponseEntity.ok(repository.save(employee));
  }
  //delete
-
+@DeleteMapping("employee/{id}")
+     public Map<String, Boolean> deleteEmployee(@PathVariable(value="id")Long id) throws ResourceNotFoundException {
+        Employee employee =  repository.findById(id)
+                .orElseThrow(()-> new ResourceNotFoundException("Employee with "+id+" not exists"));
+        repository.deleteById(id);
+        Map<String,Boolean> feedback =  new HashMap<>();
+        feedback.put("Employedd "+id +" deleted ",Boolean.TRUE);
+        return  feedback;
+     }
 
 
 

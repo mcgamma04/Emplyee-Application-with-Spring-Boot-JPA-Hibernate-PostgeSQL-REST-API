@@ -57,7 +57,7 @@ public class EmployeeController {
                 .orElseThrow(()-> new ResourceNotFoundException("Employee with "+id+" not exists"));
         repository.deleteById(id);
         Map<String,Boolean> feedback =  new HashMap<>();
-        feedback.put("Employedd "+id +" deleted ",Boolean.TRUE);
+        feedback.put("Employee "+id +" deleted ",Boolean.TRUE);
         return  feedback;
      }
 

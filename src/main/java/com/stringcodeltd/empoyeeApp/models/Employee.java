@@ -23,7 +23,7 @@ public class Employee {
 
     public Employee() {}
 
-    public Employee(int id, String firstname, String lastname, double salary, String email, String gender, String department) {
+    public Employee(long id, String firstname, String lastname, double salary, String email, String gender, String department) {
         this.id = id;
         this.firstname = firstname;
         this.lastname = lastname;
@@ -33,11 +33,11 @@ public class Employee {
         this.department = department;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

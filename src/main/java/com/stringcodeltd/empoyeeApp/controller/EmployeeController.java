@@ -3,6 +3,7 @@ package com.stringcodeltd.empoyeeApp.controller;
 import com.stringcodeltd.empoyeeApp.dao.EmployeeRepository;
 import com.stringcodeltd.empoyeeApp.models.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -25,7 +26,10 @@ public class EmployeeController {
         return employee.getFirstname().toUpperCase() +" "+employee.getLastname()+" saved successfully";
     }
 //get an employee
+@GetMapping("employee/{id}")
+    public ResponseEntity<Employee> getEmployeeById(@PathVariable("id") Long employeedId){
 
+}
 
 
 

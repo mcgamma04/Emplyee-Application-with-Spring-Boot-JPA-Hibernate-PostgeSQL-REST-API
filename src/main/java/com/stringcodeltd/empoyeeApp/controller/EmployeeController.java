@@ -1,6 +1,7 @@
 package com.stringcodeltd.empoyeeApp.controller;
 
 import com.stringcodeltd.empoyeeApp.dao.EmployeeRepository;
+import com.stringcodeltd.empoyeeApp.exception.ResourceNotFoundException;
 import com.stringcodeltd.empoyeeApp.models.Employee;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -27,9 +28,11 @@ public class EmployeeController {
     }
 //get an employee
 @GetMapping("employee/{id}")
-    public ResponseEntity<Employee> getEmployeeById(@PathVariable("id") Long employeedId){
-
-}
+    public ResponseEntity<Employee> getEmployeeById(@PathVariable("id") Long employeedId) throws ResourceNotFoundException {
+     Employee employee =  repository.findById(employeedId)
+             .orElseThrow(()-> new ResourceNotFoundException("Sorry employee with "+employeedId+ " is not found"));
+            return ResponseEntity.ok().body(employee);
+    }
 
 
 

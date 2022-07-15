@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.ResourceAccessException;
 
+import javax.validation.Valid;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -25,7 +26,7 @@ public class EmployeeController {
 
     //save emplyee
     @PostMapping("employees")
-    public String addEmployee(@RequestBody Employee employee){
+    public String addEmployee(@Valid  @RequestBody Employee employee){
         repository.save(employee);
         return employee.getFirstname().toUpperCase() +" "+employee.getLastname()+" saved successfully";
     }
@@ -39,7 +40,7 @@ public class EmployeeController {
 
  //update employee
  @PutMapping("employee/{id}")
- public ResponseEntity<Employee> updateEmployee(@PathVariable(value="id")Long employeeId, @RequestBody Employee emp) throws ResourceNotFoundException {
+ public ResponseEntity<Employee> updateEmployee(@PathVariable(value="id")Long employeeId,@Valid @RequestBody Employee emp) throws ResourceNotFoundException {
         Employee employee = repository.findById(employeeId)
                 .orElseThrow(()-> new ResourceNotFoundException("Employee not found"));
         employee.setFirstname(emp.getFirstname());

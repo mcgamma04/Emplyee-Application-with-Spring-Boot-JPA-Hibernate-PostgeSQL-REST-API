@@ -1,12 +1,24 @@
 package com.stringcodeltd.empoyeeApp.models;
 
+import javax.persistence.*;
+
+@Entity
+@Table(name = "employeetbl")
 public class Employee {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(name = "first_name")
     private String firstname;
+    @Column(name = "last_name")
     private String lastname;
+    @Column(name = "salary")
     private double salary;
+    @Column(name = "email")
     private String email;
+    @Column(name = "gender")
     private String gender;
+    @Column(name = "department")
     private String department;
 
     public Employee() {}
